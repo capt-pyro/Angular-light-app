@@ -1,0 +1,120 @@
+<div class="container-fluid"><h1 class="display-4" align="center">Your Rooms</h1></div>
+<div class="container">
+  <div id="accordion">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control"
+        [(ngModel)] = "newroomname" 
+        placeholder="" aria-label="" aria-describedby="basic-addon1">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" 
+          (click)="onNewRoom()"
+          type="button">
+          New Profile
+          </button>
+        </div>
+      </div>
+      <div class="card" *ngFor="let room of myRoomData; index as j;">
+        <div class="card-header">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#{{room.roomname}}" aria-expanded="true" aria-controls="collapseOne">
+              {{room.roomname}}
+            </a>
+          </h5>
+        </div>
+        <div id={{room.roomname}} class="panel-collapse collapse">
+          <ul class="list-group">
+            <li class="list-group-item" 
+                *ngFor="let device of room.devices; index as i;">
+              <h4>
+                  <a data-toggle="collapse" href="#{{device.devicename}}">
+                      {{device.devicename}}
+                  </a>
+              </h4>
+              <div id={{device.devicename}} class="panel-collapse collapse">
+                  <form novalidate>
+                      <div class="form-group">
+                        <label>Device Name</label>
+                        <input type="text"
+                                class="form-control" [(ngModel)]="device.newname" name="devicename">
+                      </div>
+                  
+                      <div class="form-group">
+                        <label>Temperature</label>
+                        <mat-slider min="0" max="7000" step="100" name="utemp"
+                        [(ngModel)]="device.temp" thumbLabel tickInterval="100"></mat-slider>
+                      </div>
+                    
+                      <div class="form-group">
+                          <label>Brightness</label>
+                          <mat-slider min="0" max="100" step="1" name="ubright"
+                          [(ngModel)]="device.brightness" thumbLabel tickInterval="1"></mat-slider>
+                        </div>
+                    
+                      <div class="form-group">
+                        <label>Profile</label>
+                        <select class="form-control">
+                          <option value="" disabled>Please select a Profile</option>
+                          <option *ngFor="let prof of profileList"
+                          [ngValue]="prof" 
+                          (click)="onSelectProfile(0,prof,device)">
+                          {{prof.profilename}}</option>
+                        </select>
+                      </div>
+                      <div class="row">
+                        <button type="button" class="btn btn-primary col" (click)="onDeviceUpdate(device,room)">Change</button>
+                        <button type="button" class="btn btn-danger col" 
+                        (click)="onDeviceDelete(device,room)">
+                        Remove</button>
+                      </div>
+                    </form>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <h4>
+                  <a data-toggle="collapse" href="#newDevice{{room.roomname}}">
+                      Add New Device
+                  </a>
+              </h4>
+              <div id="newDevice{{room.roomname}}" class="panel-collapse collapse">
+                  <form novalidate>
+                      <div class="form-group">
+                        <label>Device Name</label>
+                        <input type="text"
+                                class="form-control" [(ngModel)]="tempDevObj.devicename"
+                                name="devicename">
+                      </div>
+                  
+                      <div class="form-group">
+                        <label>Temperature</label>
+                        <mat-slider min="0" max="7000" step="100" name="tempp"
+                        [(ngModel)]="tempDevObj.temp" thumbLabel tickInterval="100"></mat-slider>
+                      </div>
+                    
+                      <div class="form-group">
+                          <label>Brightness</label>
+                          <mat-slider min="0" max="100" step="1" name="bright"
+                          [(ngModel)]="tempDevObj.brightness" thumbLabel tickInterval="1"></mat-slider>
+                        </div>
+                    
+                      <div class="form-group">
+                        <label>Profile</label>
+                        <select class="form-control">
+                          <option value="">Please select a Profile</option>
+                          <option *ngFor="let prof of profileList" [value]="prof"
+                          (click)="onSelectProfile(1,prof)">
+                          {{prof.profilename}}</option>
+                        </select>
+                      </div>
+                      <div>
+                        <button type="button" class="btn btn-primary" 
+                        (click)="onCreateDevice(room)">
+                        Create</button>
+                      </div>
+                    </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div> 

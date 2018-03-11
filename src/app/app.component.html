@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="landing">Echo Smart Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="rooms">Rooms <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="profile">Profiles <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <div *ngIf="findLocStor();else logout">
+          <ul class="navbar-nav navbar-right">
+            <li><a href="landing" (click)="onLogout()">Logout</a></li>
+          </ul>
+      </div>
+      <ng-template #logout>
+          <ul class="navbar-nav navbar-right">
+            <li><a href="login">Login</a></li>
+          </ul>
+      </ng-template>
+    </div>
+  </nav>
+<router-outlet></router-outlet>

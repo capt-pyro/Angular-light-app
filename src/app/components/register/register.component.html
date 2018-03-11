@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-4">
+    <h1>Register new users</h1>
+    <hr><br>
+    <form (ngSubmit)="onRegister()" novalidate>
+     <div class="form-group">
+       <label for="name">Username</label>
+       <input type="text" class="form-control" id="name" placeholder="enter Username" [(ngModel)]="user.username" name="name" required>
+     </div>
+     <div class="form-group">
+       <label for="password">Password</label>
+       <input type="password" class="form-control" id="password" placeholder="enter password" [(ngModel)]="user.password" name="password" required>
+     </div>
+     <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.selected {
+    background-color: #CFD8DC !important;
+    color: white;
+  }
+
+  .list-group li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+  }
+  .list-group li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+  .list-group .text {
+    position: relative;
+    top: -3px;
+  }
+  .inst {
+    padding: 0.25em;
+    margin-bottom: 1em;
+  }
+  .specbtn{
+    margin-left: 1em;
+  }
+  label{
+    text-align: left;
+  }
+  .timeal {
+    padding-top: 2em; 
+  }
+  .addins {
+    border-style: dashed;
+    border-color:  rgb(105, 212, 198);
+  }
+  .fixedins {
+    border-style: solid;
+    border-color:  rgb(105, 212, 198);
+  }
+  .container {
+    margin-top: 1em;
+  }
+  .list-group-item-danger{
+    text-align: center;
+  }

@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <h1 align="center" class="display-4">Your Profiles</h1>
+    <div class="container">
+      <ul class="list-group">
+        <li
+          *ngFor="let profile of profileList"
+          [class.selected]="profile === profileObjectDisplay"
+          class="list-group-item"
+          (click)="onSelect(profile)">
+          {{profile.profilename}}
+        </li>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control"
+          [(ngModel)] = "newprofname" 
+          placeholder="" aria-label="" aria-describedby="basic-addon1">
+          <div class="input-group-append">
+              <button class="btn btn-outline-secondary" 
+              (click)="onNewProf()"
+              type="button">
+              New Profile
+            </button>
+          </div>
+        </div> 
+      </ul>
+    </div>
+    
+    <div *ngIf="profileObjectDisplay" class="container">
+      <h2>{{profileObjectDisplay.profilename}} Details</h2>
+      <a class="list-group-item list-group-item-action list-group-item-danger container"
+        (click)="onRemoveProf(profile)">Remove Profile</a>
+      <div *ngFor="let profInstance of profileObjectDisplay.instances" class="inst">
+        <div class="container-fluid row">
+          <label class="col-6">Light Temperature:
+              <mat-slider min="0" max="7000" step="100" 
+              [(ngModel)]="profInstance.temp" thumbLabel tickInterval="100"></mat-slider>
+          </label>
+          <label class="col-6">Brightness:
+              <mat-slider min="0" max="100" step="1" 
+              [(ngModel)]="profInstance.bright" thumbLabel tickInterval="1"></mat-slider>
+          </label>
+        </div>
+          <div class = "row container-fluid">
+            <label class="col-2 timeal">Start Time</label>
+            <label class="col-4">
+              <ngb-timepicker [(ngModel)]="profInstance.timeMoment"></ngb-timepicker>
+            </label>
+            <label class="col-4 timeal">Duration (hrs):
+                <mat-slider min="0" max="23.5" step="0.5" 
+                [(ngModel)]="profInstance.transLength" thumbLabel tickInterval="0.5"></mat-slider>
+            </label>
+          </div>
+          <div class="row">
+          <button type="button" class="btn btn-primary specbtn col-2" (click)="onSubmitProfile(profileObjectDisplay, profInstance.index)">Submit</button>
+          <button type="button" class="btn btn-danger specbtn col-2" (click)="onRemoveInst(profileObjectDisplay, profInstance.index)">Delete</button>  
+        </div>
+      </div>
+    </div>
+    <div *ngIf="profileObjectDisplay" class="container addins">
+        <h2>Add new Instance</h2>
+        <div class="row">
+          <label class="col-6">Light Temperature:
+            <mat-slider min="0" max="7000" step="100" 
+            [(ngModel)]="ttemp" thumbLabel tickInterval="100"></mat-slider>
+          </label>
+          <label class="col-6">Brightness:
+              <mat-slider min="0" max="100" step="1" 
+              [(ngModel)]="tbright" thumbLabel tickInterval="1"></mat-slider>
+          </label>
+        </div>
+        <div class="row">
+          <label class="col-2 timeal">Start Time</label>  
+          <label class="col-4">
+            <ngb-timepicker [(ngModel)]="ttime"></ngb-timepicker>
+          </label>
+          <label class="col-4 timeal">Duration:
+              <mat-slider min="0" max="23.5" step="0.5" 
+              [(ngModel)]="tlength" thumbLabel tickInterval="0.5"></mat-slider>
+          </label>  
+        </div>  
+        <div class="row">
+          <button type="button" class="btn btn-success specbtn" (click)="onNewProfInst()">Create</button>
+        </div>
+    </div>
+</div>  

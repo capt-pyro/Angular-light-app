@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod --build-optimizer"
+    "postinstall": "ng build --prod --build-optimizer --base-href \"http:\/\/angular-lighting-app.herokuapp.com\""
   },
   "private": true,
   "dependencies": {
